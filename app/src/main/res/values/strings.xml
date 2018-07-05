@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SampleSnapKit</string>
+    <string name="scheme">samplekit</string>
+    <string name="host">com.company.sample</string>
+    <string-array name="snap_connect_scopes">
+        <item>https://auth.snapchat.com/oauth2/api/user.external_id</item>
+        <item>https://auth.snapchat.com/oauth2/api/user.display_name</item>
+    </string-array>
+</resources>
