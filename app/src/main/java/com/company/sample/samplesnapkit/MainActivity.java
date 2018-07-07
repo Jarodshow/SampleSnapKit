@@ -60,19 +60,13 @@ public class MainActivity extends AppCompatActivity {
         controller.addOnLoginStartListener(mLoginStartListener);
 
         mLoginButton = SnapLogin.getButton(usageContext, layout);
-    }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-
-        layout.removeView(mLoginButton);
-        final TextView view = new TextView(usageContext);
-        final Button button = new Button(usageContext);
+        final TextView view = findViewById(R.id.resultView);
+        final Button button = findViewById(R.id.fetchButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean b = SnapLogin.isUserLoggedIn(usageContext);
                 SnapLogin.fetchUserData(usageContext, "me{displayName}", null, new FetchUserDataCallback() {
                     @Override
                     public void onSuccess(@Nullable UserDataResponse userDataResponse) {
@@ -93,8 +87,5 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-
-        layout.addView(view);
-        layout.addView(button);
     }
 }
