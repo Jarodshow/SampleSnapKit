@@ -16,36 +16,12 @@ import com.snapchat.kit.sdk.core.models.MeData;
 import com.snapchat.kit.sdk.core.models.UserDataResponse;
 import com.snapchat.kit.sdk.login.networking.FetchUserDataCallback;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity
+        extends AppCompatActivity implements LoginStateController.OnLoginStateChangedListener,
+        LoginStateController.OnLoginStartListener {
     private Context usageContext;
     private ConstraintLayout layout;
     private View mLoginButton;
-
-    private LoginStateController.OnLoginStateChangedListener mLoginStateChangedListener =
-            new LoginStateController.OnLoginStateChangedListener() {
-                @Override
-                public void onLoginSucceeded() {
-
-                }
-
-                @Override
-                public void onLoginFailed() {
-
-                }
-
-                @Override
-                public void onLogout() {
-
-                }
-            };
-
-    private LoginStateController.OnLoginStartListener mLoginStartListener =
-            new LoginStateController.OnLoginStartListener() {
-                @Override
-                public void onLoginStart() {
-
-                }
-            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         layout = findViewById(R.id.login_layout);
 
         LoginStateController controller = SnapLogin.getLoginStateController(usageContext);
-        controller.addOnLoginStateChangedListener(mLoginStateChangedListener);
-        controller.addOnLoginStartListener(mLoginStartListener);
+        controller.addOnLoginStateChangedListener(this);
+        controller.addOnLoginStartListener(this);
 
         mLoginButton = SnapLogin.getButton(usageContext, layout);
 
@@ -87,5 +63,25 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    public void onLoginSucceeded() {
+
+    }
+
+    @Override
+    public void onLoginFailed() {
+
+    }
+
+    @Override
+    public void onLogout() {
+
+    }
+
+    @Override
+    public void onLoginStart() {
+
     }
 }
