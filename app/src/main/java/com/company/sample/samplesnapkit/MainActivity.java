@@ -43,7 +43,7 @@ public class MainActivity
             @Override
             public void onClick(View v) {
                 boolean b = SnapLogin.isUserLoggedIn(usageContext);
-                SnapLogin.fetchUserData(usageContext, "me{displayName}", null, new FetchUserDataCallback() {
+                SnapLogin.fetchUserData(usageContext, "{me{displayName}}", null, new FetchUserDataCallback() {
                     @Override
                     public void onSuccess(@Nullable UserDataResponse userDataResponse) {
                         if (userDataResponse == null || userDataResponse.getData() == null
